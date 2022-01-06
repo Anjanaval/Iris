@@ -23,7 +23,7 @@ def get_sequences(tokenizer, tweets):
 
 def main():
 
-    model = load_model('C:/Users/valsa/OneDrive - The University of the West Indies, St. Augustine/Final Year/ECNG 3020/Python Scripts/SA_Model_Final_05012022_10_28_19')
+    model = load_model('C:/Users/valsa/OneDrive - The University of the West Indies, St. Augustine/Final Year/ECNG 3020/Iris/Python Scripts/SA_Model_Final_05012022_10_28_19')
     train = pd.read_csv("G:\My Drive\AnjanaValsalan_ECNG 3020\Implementation Files\Datasets\ECNG3020_Final_Dataset\ECNG3020_Train_Dataset.csv")
    
 
