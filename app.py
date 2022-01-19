@@ -2,6 +2,8 @@ import os
 from flask import Flask, request, jsonify
 from model import SA_Model
 
+model = SA_Model()
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
@@ -26,6 +28,5 @@ def server_error(error):
 
 
 if __name__ == '__main__':
-    model = SA_Model()
     port = int(os.environ.get("PORT", 2000))
     app.run(port=port, debug=True)
