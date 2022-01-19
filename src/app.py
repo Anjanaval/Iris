@@ -12,11 +12,13 @@ def home():
 
 @app.route("/emotion", methods=["POST", "GET"])
 def result():
-    if request.method == "POST":
-        output = request.get_json() or request.form
-        msg = output['msg'] 
+    msg = request.form.get('msg')
+    if msg == None:
+        return jsonify({'message': 'Fail'}), 400
+    else:
         emotion = model.get_emotion(msg)
         return jsonify({'emotion': emotion}), 200
+
 
 @app.errorhandler(500)
 def server_error(error):

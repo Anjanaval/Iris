@@ -1,12 +1,12 @@
-import tensorflow as tf
+import requests
+import json
 import numpy as np
-from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 
 class SA_Model():
     def __init__(self):
-        self.model = load_model('SA_Model_Final_v8')
+        self.api_url="https://sa-model-api.herokuapp.com/v1/models/SA_Model_Final_v8:predict"
         self.classes = ['joy', 'fear', 'anger', 'sadness', 'love', 'surprise']
         self.class_to_index = dict((c,i) for i, c in enumerate(self.classes))
         self.index_to_class = dict((v, k) for k, v in self.class_to_index.items())
@@ -22,7 +22,10 @@ class SA_Model():
     def get_emotion(self, msg):
         msg_seq = self.get_sequences([msg])
 
-        p = self.model.predict(msg_seq)[0]
-        pred_class = self.index_to_class[np.argmax(p).astype('uint8')]
+        payload = json.dumps({'signature_name': "serving_default", 'instances': msg_seq.tolist()})
+        response = requests.post(self.api_url, data=payload, headers={"content_type": "application/json"})
 
-        return pred_class
+        predictions = json.loads(response.text)
+        emotion = self.index_to_class[np.argmax(predictions['predictions'][0]).astype('uint8')]
+
+        return emotion
