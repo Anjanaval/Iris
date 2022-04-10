@@ -17,7 +17,9 @@ def result():
         return jsonify({'message': 'Fail'}), 400
     else:
         emotion = model.get_emotion(msg)
-        return jsonify({'emotion': emotion}), 200
+        response = jsonify({'emotion': emotion})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
 
 
 @app.errorhandler(500)
