@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
 import PostForm from './components/PostForm';
-import cors from 'cors';
 
 function App() {
   const [sentence, setSentence] = useState("");
@@ -13,5 +12,5 @@ function App() {
     </div>
   );
 }
-App.use(cors());
+
 export default App;
