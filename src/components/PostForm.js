@@ -10,7 +10,8 @@ function PostForm() {
     function submit(e){
         e.preventDefault();
         axios.post(url,{
-            msg: data.msg
+            msg: data.msg,
+            withCredentials: true
         })
         .then(res=>{
             console.log(res)
