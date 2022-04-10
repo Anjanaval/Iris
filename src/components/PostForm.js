@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function PostForm() {
-    const url = fetch('/emotion')
+    const url = 'https://sa-model.herokuapp.com/emotion'
     const [data, setData] = useState({
         msg: ""
     })
