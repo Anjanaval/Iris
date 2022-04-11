@@ -1,10 +1,12 @@
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from model import SA_Model
 
 model = SA_Model()
 
 app = Flask(__name__)
+cors = CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():
