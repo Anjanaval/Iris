@@ -8,8 +8,11 @@ views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET', 'POST'])
 def home():
-    data = request.form.get('msg','abcde')
-    emotion = model(data)
+    data = request.form.get('msg','')
+    if data == '':
+        emotion = ''
+    else:
+        emotion = model(data)
     prediction = [{'msg':data,'emotion':emotion}]
     return render_template('home.html',prediction=prediction)
 
