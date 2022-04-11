@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from model import SA_Model
 
 model = SA_Model()
@@ -13,6 +13,7 @@ def home():
     return jsonify({'message': 'Access'})
 
 @app.route("/emotion", methods=["POST", "GET"])
+@cross_origin(origin='*')
 def result():
     msg = request.form.get('msg')
     if msg == None:
